@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List App</title>
+    <!-- ================css================ -->
+    <style>
+        :root{
+            --bg-clr:#f0f0f0;
+            --bg-clr1:#cacaca;
+            --bg-clr2:#f0f0f0;
+            --bg-clr3:white;
+            --btn-clr:black;
+        }
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: var(--bg-clr);
+            position: relative;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+        }
+        #inputdata{
+            border: none;
+            width: 75vw;
+            padding: 15px 5px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .btn {
+            padding: 12px 18px;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+            border-radius: 40px;
+            margin-bottom: 20px;
+            background: linear-gradient(315deg, var(--bg-clr1), var(--bg-clr2));
+            box-shadow: -4px -4px 7px var(--bg-clr1),
+                8px 8px 11px var(--bg-clr2);
+        }
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+           
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--bg-clr3);
+            padding: 10px;
+            margin: 5px auto;
+            font-size: 18px;
+            max-width: 75vw;
+            border-radius: 10px;
+            position: relative;
+        }
+        li button {
+            border: none;
+            padding: 5px 10px;
+            background-color: var(--btn-clr);
+            color: var(--bg-clr3);
+            border-radius: 50%;
+            position: absolute;
+            right: 8px;
+            top: 9px;
+        }
+        li div {
+            width: 95%;
+            text-align: left;
+            word-wrap: break-word;
+            text-align: justify;
+        }
+        #copyright{
+            text-align: center;
+        }
+        @media (max-width:600px) {
+            #inputdata{
+            width: 90vw;
+            }
+            li div {
+                width: 93%;
+            }
+
+            li button {
+                padding: 3px 8px;
+                right: 5px;
+                top: 5px;
+            }
+            li{
+                max-width: none;
+                font-size: 16px;
+            }
+            body {
+                margin: 50px 10px;
+            }
+        }
+    </style>
+   <!-- ================css================ -->
+</head>
+
+<body>
+
+    <h1>To-Do List App</h1>
+    <input type="text" id="inputdata" placeholder="New Task"> <br>
+    <button class="btn" onclick="addTask()">Add Task</button>
+    <ul id="taskList"></ul>
+    <p id="copyright">&copy; 2024 -UDIT KUMAR</p>
+    <!-- ===========JavaScript=========== -->
+    <script>
+        function addTask() {
+            var inputdata = document.getElementById("inputdata");
+            var taskValue = inputdata.value;
+            if (taskValue.trim() !== "") {
+                var li = document.createElement("li");
+                li.innerHTML = `
+                    <div>${taskValue}</div>
+                    <button onclick="removeTask(this)">X</button>  
+                `;
+                document.getElementById("taskList").appendChild(li);
+                inputdata.value = "";
+            }
+        }
+        function removeTask(button) {
+            var li = button.parentNode;
+            li.parentNode.removeChild(li);
+        }
+    </script>
+    <!-- ===========JavaScript=========== -->
+</body>
+</html>
